@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSME Digest by Mukesh Mohan Gupta</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+    .font-body { font-family: 'Source Sans 3', sans-serif; }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .animate-float { animation: float 4s ease-in-out infinite; }
+    
+    .gold-shimmer {
+      background: linear-gradient(90deg, #C9A227 0%, #F4D03F 50%, #C9A227 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .book-shadow {
+      box-shadow: 
+        0 0 0 1px rgba(201, 162, 39, 0.3),
+        -20px 20px 40px rgba(0,0,0,0.4),
+        -10px 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #0D5C46 0%, #1A7F64 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1A7F64 0%, #0D5C46 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(13, 92, 70, 0.4);
+    }
+    .btn-price-strike {
+      text-decoration: line-through;
+      text-decoration-color: #ef4444;
+      text-decoration-thickness: 2px;
+      color: rgba(255,255,255,0.85);
+    }
+    .btn-cta-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      text-align: left;
+    }
+    
+    .section-divider {
+      background: linear-gradient(90deg, transparent, #C9A227, transparent);
+      height: 1px;
+    }
+    
+    .pattern-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A227' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-book-3d {
+      transform: rotateY(-15deg);
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .hero-book-3d:hover {
+      transform: rotateY(-20deg) rotateX(2deg) translateY(-8px);
+      box-shadow: -20px 20px 40px rgba(0,0,0,0.12);
+    }
+    /* Intentionally no extra styling for `.hero-book-wrapper`. */
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'deep-green': '#0D5C46',
+            'forest': '#1A7F64',
+            'gold': '#C9A227',
+            'gold-light': '#F4D03F',
+            'cream': '#FDFBF7',
+            'charcoal': '#2D3436'
+          }
+        }
+      }
+    }
+  </script>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-cream text-charcoal">
+  <div id="main-wrapper" class="w-full h-full overflow-auto">
+    <!-- Hero Section -->
+   <section class="relative min-h-screen pattern-overlay" style="background: linear-gradient(180deg, #FDFBF7 0%, #F5F1E8 100%);">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-deep-green via-gold to-deep-green"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-20">
+     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <!-- Book Mockup -->
+      <div class="lg:w-1/2 flex justify-center items-center" style="perspective: 1200px;">
+       <div class="flex flex-col items-start w-full max-w-[420px]">
+        <div class="animate-float relative self-center">
+         <div class="hero-book-3d">
+          <div class="hero-book-wrapper rounded-xl overflow-hidden" style="width: 420px; max-width: 90vw;">
+           <!-- Book Cover - no frame -->
+          <div class="w-full overflow-hidden rounded-xl" style="aspect-ratio: 3/4;">
+           <img src="images/frontbook.png" alt="MSME Digest Book Cover" class="w-full h-full object-cover block">
+          </div>
+         </div>
+         </div>
+        </div>
+        <!-- Book actions (mobile-first stacking) -->
+        <div class="mt-6 w-full">
+         <div class="flex flex-col sm:flex-row gap-3 items-stretch">
+          <a href="pdf/sample-chapter.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary px-5 py-2.5 min-h-[44px] text-white font-semibold rounded-lg text-sm sm:text-base flex items-center justify-center w-full sm:w-auto shadow-lg hover:shadow-xl cursor-pointer active:scale-[0.98] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-green/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream">
+           View Sample Chapter
+          </a>
+          <a href="pdf/INDEX OF CASES-05.03.2026.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary px-5 py-2.5 min-h-[44px] text-white font-semibold rounded-lg text-sm sm:text-base flex items-center justify-center w-full sm:w-auto shadow-lg hover:shadow-xl cursor-pointer active:scale-[0.98] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-green/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream">
+           View Content
+          </a>
+          <a href="foreword.html" class="bg-deep-green/10 border border-deep-green/30 text-deep-green px-5 py-2.5 min-h-[44px] font-semibold rounded-lg text-sm sm:text-base flex items-center justify-center w-full sm:w-auto hover:bg-deep-green/15 active:scale-[0.98] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-green/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream">
+           Foreword
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <!-- Hero Content -->
+      <div class="lg:w-1/2 w-full min-w-0 text-center lg:text-left">
+       <div class="animate-fade-in-up" style="animation-delay: 0.2s; opacity: 0;">
+        <span class="inline-block px-4 py-1 bg-deep-green/10 text-deep-green text-sm font-semibold rounded-full mb-6"> 
+        📚 Edition 2026 • 536 Pages </span>
+       </div>
+       <h1 id="hero-headline" class="animate-fade-in-up font-display text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal leading-tight mb-6" 
+       style="animation-delay: 0.3s; opacity: 0;">
+        India's Most Structured Judicial Guide on <span class="text-deep-green">MSME Law</span></h1>
+       <p id="hero-subheadline" class="animate-fade-in-up text-lg md:text-xl text-gray-600 leading-relaxed mb-6" 
+       style="animation-delay: 0.4s; opacity: 0;">50+ Landmark Supreme Court &amp; High Court Judgments Explained in 
+       a Uniform 14-Part Analytical Format</p>
+       <p class="animate-fade-in-up text-gray-500 mb-8 leading-relaxed" style="animation-delay: 0.5s; opacity: 0;">
+        A practice-ready legal compendium interpreting the Micro, Small and Medium Enterprises Development Act — covering delayed payments, 
+        statutory interest, Facilitation Council jurisdiction, arbitration conflicts, and insolvency overlaps.</p>
+       <div class="animate-fade-in-up w-full min-w-0 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch sm:items-center" 
+       style="animation-delay: 0.6s; opacity: 0;">
+        <a href="https://rzp.io/rzp/H8XizLL" target="_blank" rel="noopener noreferrer" class="hero-buy-cta btn-primary w-full sm:w-auto max-w-full sm:max-w-none min-w-0 mx-auto sm:mx-0 px-4 py-3.5 sm:px-8 sm:py-4 text-white font-semibold rounded-lg text-base sm:text-lg flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-3 shadow-lg hover:shadow-xl cursor-pointer group active:scale-[0.98] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-green/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream">
+         <span class="text-xl sm:text-2xl shrink-0 leading-none" aria-hidden="true">🟢</span>
+         <span class="btn-cta-block !items-center sm:!items-start !text-center sm:!text-left min-w-0 w-full sm:w-auto">
+          <span class="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-0.5">
+           <span class="leading-snug">10% Discount For MSMEs</span>
+           <span class="btn-price-strike whitespace-nowrap">₹995</span>
+          </span>
+          <span class="text-gold-light font-bold text-lg sm:text-xl whitespace-normal">Offer price – <span id="hero-price">₹895</span></span>
+         </span>
+        </a>
+       </div>
+       <div class="animate-fade-in-up mt-8 flex flex-wrap gap-6 justify-center lg:justify-start text-sm text-gray-500" style="animation-delay: 0.7s; opacity: 0;"><span class="flex items-center gap-2">
+         <svg class="w-5 h-5 text-gold" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> 10+ Supreme Court Rulings </span> <span class="flex items-center gap-2">
+         <svg class="w-5 h-5 text-gold" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> 40+ High Court Judgments </span> <span class="flex items-center gap-2">
+         <svg class="w-5 h-5 text-gold" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> 14-Part Analysis </span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Problem Section -->
+   <section class="py-20 bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+     <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(201,162,39,0.1) 10px, rgba(201,162,39,0.1) 20px);"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 relative">
+     <div class="text-center mb-16">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Are You Facing These <span class="gold-shimmer">MSME Challenges?</span></h2>
+      <div class="w-24 h-1 bg-gold mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 card-hover">
+       <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4"><span class="text-2xl">⚖️</span>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Delayed Payment from Buyers?</h3>
+       <p class="text-gray-400 text-sm">Statutory Remedies available along with Interest?</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 card-hover">
+       <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4"><span class="text-2xl">📋</span>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Section 18 of MSMED Act 2006 - Jurisdiction</h3>
+       <p class="text-gray-400 text-sm">Confusion over Facilitation Council's jurisdiction and scope?</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 card-hover">
+       <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4"><span class="text-2xl">💰</span>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Arbitration Conflicts</h3>
+       <p class="text-gray-400 text-sm">Arbitration clause vs MSMED Act conflict resolution?</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 card-hover">
+       <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4"><span class="text-2xl">📜</span>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">75% Pre-Deposit</h3>
+       <p class="text-gray-400 text-sm">Section 19 pre-deposit requirements and exemptions?</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 card-hover">
+       <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4"><span class="text-2xl">🏛️</span>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Award Enforcement</h3>
+       <p class="text-gray-400 text-sm">Enforcement of Facilitation Council awards?</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 card-hover">
+       <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4"><span class="text-2xl">⏱️</span>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Insolvency and Bankruptcy Claims</h3>
+       <p class="text-gray-400 text-sm">MSME claims during insolvency proceedings?</p>
+      </div>
+     </div>
+     
+    </div>
+   </section>
+   <!-- Solution Section -->
+   <section class="py-20 bg-cream">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16"><span class="inline-block px-4 py-1 bg-gold/20 text-gold-dark text-sm font-semibold rounded-full mb-4">THE SOLUTION</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-charcoal mb-4">Introducing <span class="text-deep-green">MSME Digest</span></h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">A consolidated judicial reference designed for entrepreneurs, advocates, CAs, insolvency professionals, and policymakers.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <!-- 50+ Card -->
+      <div class="bg-gradient-to-br from-deep-green/5 to-transparent rounded-2xl p-8 shadow-md border border-deep-green/20 card-hover group hover:border-deep-green/60 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-24 h-24 bg-deep-green/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-20 h-20 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+         <span class="text-4xl font-bold text-white">50+</span>
+        </div>
+        <h3 class="font-semibold text-xl text-charcoal mb-2 leading-snug">Curated Landmark Decisions</h3>
+        <p class="text-gray-600 text-sm">All landmark judgments carefully curated</p>
+       </div>
+      </div><!-- 10+ Card -->
+      <div class="bg-gradient-to-br from-gold/10 to-transparent rounded-2xl p-8 shadow-md border border-gold/20 card-hover group hover:border-gold/60 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-20 h-20 bg-gradient-to-br from-gold to-gold-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+         <span class="text-4xl font-bold text-white">10+</span>
+        </div>
+        <h3 class="font-semibold text-xl text-charcoal mb-2 leading-snug">Supreme Court Rulings</h3>
+        <p class="text-gray-600 text-sm">Authoritative guidance from apex court</p>
+       </div>
+      </div><!-- 40+ Card -->
+      <div class="bg-gradient-to-br from-deep-green/5 to-transparent rounded-2xl p-8 shadow-md border border-deep-green/20 card-hover group hover:border-deep-green/60 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-24 h-24 bg-deep-green/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-20 h-20 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+         <span class="text-4xl font-bold text-white">40+</span>
+        </div>
+        <h3 class="font-semibold text-xl text-charcoal mb-2 leading-snug">High Court Judgments</h3>
+        <p class="text-gray-600 text-sm">State and regional judicial perspectives</p>
+       </div>
+      </div><!-- 14 Card -->
+      <div class="bg-gradient-to-br from-gold/10 to-transparent rounded-2xl p-8 shadow-md border border-gold/20 card-hover group hover:border-gold/60 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-20 h-20 bg-gradient-to-br from-gold to-gold-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+         <span class="text-4xl font-bold text-white">14</span>
+        </div>
+        <h3 class="font-semibold text-xl text-charcoal mb-2 leading-snug">Part Analytical Structure</h3>
+        <p class="text-gray-600 text-sm">Uniform framework for every case</p>
+       </div>
+      </div>
+      <!-- Appendices Card -->
+      <div class="bg-gradient-to-br from-deep-green/5 to-transparent rounded-2xl p-8 shadow-md border border-deep-green/20 card-hover group hover:border-deep-green/60 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-24 h-24 bg-deep-green/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-20 h-20 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+         <span class="text-3xl">📑</span>
+        </div>
+        <h3 class="font-semibold text-xl text-charcoal mb-2 leading-snug">Statutory Appendices</h3>
+        <p class="text-gray-600 text-sm">Complete legal provisions included</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- USP Section -->
+   <section class="py-20 bg-gradient-to-br from-deep-green to-forest text-white">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div><span class="inline-block px-4 py-1 bg-white/20 text-white text-sm font-semibold rounded-full mb-6">UNIQUE SELLING PROPOSITION</span>
+       <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">What Makes This Book <span class="text-gold-light">Different?</span></h2>
+       <p class="text-green-100 mb-8 text-lg">Every case is analyzed using our proprietary 14-Part Research Structure, transforming each judgment into a ready-to-use legal research module.</p>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
+        <h3 class="font-semibold text-gold-light mb-4 flex items-center gap-2"><span>✅</span> Uniform 14-Part Research Structure</h3>
+        <p class="text-green-100 text-sm">This consistent analytical framework ensures you can quickly navigate any case, compare rulings, and extract applicable principles efficiently.</p>
+       </div>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/20">
+       <h3 class="font-semibold text-xl mb-6 text-center">Each Case Includes:</h3>
+       <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">1</span> <span class="text-sm">Case Summary</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">2</span> <span class="text-sm">Abstract / Headnote</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">3</span> <span class="text-sm">Keywords</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">4</span> <span class="text-sm">Case Details</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">5</span> <span class="text-sm">Introduction & Background of the Judgment</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">6</span> <span class="text-sm">Facts of the Case</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">7</span> <span class="text-sm">Legal Issues Involved</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">8</span> <span class="text-sm">Petitioner / Appellant's Arguments</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">9</span> <span class="text-sm">Respondent's Arguments</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">10</span> <span class="text-sm">Related Legal Provisions</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">11</span> <span class="text-sm">Judgment with Ratio Decidendi and Obiter Dicta</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">12</span> <span class="text-sm">Guidelines</span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">13</span> <span class="text-sm">	Conclusion & Commentary </span>
+        </div>
+        <div class="flex items-center gap-3"><span class="w-8 h-8 bg-gold/20 rounded-lg flex items-center justify-center text-gold text-sm font-bold">14</span> <span class="text-sm">References</span>
+        </div>
+
+
+       </div>
+       
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Thematic Coverage -->
+   <section class="py-20 bg-cream">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16"><span class="inline-block px-4 py-1 bg-gold/20 text-gold-dark text-sm font-semibold rounded-full mb-4">LEGAL DOMAINS</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-charcoal mb-4">Critical <span class="text-deep-green">MSME Litigation Areas</span> Covered</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">All 9 essential legal domains with jurisdiction clarity, arbitration strategies, compliance frameworks &amp; enforcement mechanisms.</p>
+      <div class="w-24 h-1 bg-gold mx-auto mt-6"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Card 1 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-deep-green/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-deep-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Sections 15–23 of MSMED Act 2006</h3>
+        <p class="text-gray-600 text-sm">Delayed Payments &amp; Interest Provisions</p>
+       </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-gold/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-gold to-gold-light rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Definition of "Supplier"</h3>
+        <p class="text-gray-600 text-sm">Judicial interpretation and scope</p>
+       </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-deep-green/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-deep-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54h3.27v3.27h2.54v-3.27h3.27L12.96 9.29z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Section 18 of MSMED Act </h3>
+        <p class="text-gray-600 text-sm">    Arbitration & Conciliation Provisions   </p>
+       </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-gold/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-gold to-gold-light rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 
+          8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 
+          8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Section 19 of MSMED Act </h3>
+        <p class="text-gray-600 text-sm">75% of the Award Amount Deposit rules and exemptions</p>
+       </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-deep-green/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-deep-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Award Enforceability</h3>
+        <p class="text-gray-600 text-sm">Execution and compliance mechanisms</p>
+       </div>
+      </div><!-- Card 6 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-gold/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-gold to-gold-light rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Judicial Review</h3>
+        <p class="text-gray-600 text-sm">Standards and limitations</p>
+       </div>
+      </div><!-- Card 7 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-deep-green/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-deep-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">IBC Interaction</h3>
+        <p class="text-gray-600 text-sm">Insolvency &amp; Bankruptcy Code overlap</p>
+       </div>
+      </div><!-- Card 8 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-gold/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-gold to-gold-light rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Public Procurement Policy</h3>
+        <p class="text-gray-600 text-sm">Policy for Micro &amp; Small Enterprises</p>
+
+        
+       </div>
+      </div><!-- Card 9 -->
+      <div class="group bg-white rounded-2xl p-7 shadow-lg border border-gray-100 card-hover hover:border-deep-green/50 relative overflow-hidden">
+       <div class="absolute top-0 right-0 w-32 h-32 bg-deep-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+       <div class="relative z-10">
+        <div class="w-14 h-14 bg-gradient-to-br from-deep-green to-forest rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+         <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
+         </svg>
+        </div>
+        <h3 class="font-semibold text-lg text-charcoal mb-2">Arbitration and Conciliation Act 1996 </h3>
+        <p class="text-gray-600 text-sm">Understanding Arbitration Act Provisions related to MSME</p>
+       </div>
+      </div>
+     </div>
+     <div class="mt-12 text-center">
+      <div class="inline-block bg-deep-green/5 border border-deep-green/20 rounded-lg px-6 py-4">
+       <p class="text-charcoal font-medium">✨ Each domain covered with landmark judgments, judicial principles &amp; practical guidance.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Author Section -->
+   <section class="relative py-10 sm:py-12 md:py-14 bg-charcoal text-white overflow-x-hidden">
+    <div class="absolute top-1/2 left-0 w-56 h-56 sm:w-72 sm:h-72 bg-deep-green/15 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+     <div class="grid md:grid-cols-12 gap-6 sm:gap-8 md:gap-10 items-start">
+      <div class="text-center md:text-left md:col-span-3 lg:col-span-2 flex flex-col items-center md:items-start mb-1 md:mb-0"><!-- Author Avatar -->
+       <div class="inline-block group shrink-0">
+        <div class="w-[8.75rem] h-[8.75rem] sm:w-40 sm:h-40 md:w-44 md:h-44 mx-auto md:mx-0 rounded-full bg-gradient-to-br from-deep-green to-forest p-1 shadow-lg shadow-black/30 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[0_0_28px_rgba(201,162,39,0.25)] group-hover:ring-2 group-hover:ring-gold/40 group-hover:ring-offset-2 group-hover:ring-offset-charcoal">
+         <div class="w-full h-full rounded-full overflow-hidden bg-white ring-2 ring-white/10">
+          <img src="images/author-photo.png" alt="Mukesh Mohan Gupta" class="w-full h-full object-contain rounded-full transition-transform duration-300 group-hover:scale-105">
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="md:col-span-9 lg:col-span-10 min-w-0 text-center md:text-left">
+       <span class="inline-block px-3.5 sm:px-4 py-1 bg-gold/20 text-gold text-xs sm:text-sm font-semibold rounded-full mb-3 transition-colors duration-300 hover:bg-gold/30">ABOUT THE AUTHOR</span>
+       <h2 id="author-name-section" class="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-1.5 text-balance px-1 md:px-0">Mukesh Mohan Gupta</h2>
+       <p id="author-title-section" class="text-gold mb-4 text-sm sm:text-base md:text-lg leading-snug max-w-2xl mx-auto md:mx-0 break-words hyphens-auto">President – Chamber of Indian Micro Small and Medium Enterprises</p>
+       <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 md:p-6 mb-4 text-left transition-all duration-300 hover:border-gold/25 hover:bg-white/[0.06] max-md:max-w-prose max-md:mx-auto md:max-w-none">
+        <div class="space-y-3 sm:space-y-2.5 md:space-y-3 text-gray-300 text-[0.9375rem] sm:text-[15px] md:text-base leading-relaxed columns-1 lg:columns-2 lg:[column-gap:2.5rem] [column-fill:_balance] [&>p]:break-inside-avoid">
+         <p>Mukesh Mohan Gupta is a Chartered Accountant by Profession, having more than 30 years of experience in Banking, Finance, MSMEs, Economy, Law Accounting and Auditing.</p>
+         <p>He has served on the Board of Dena Bank as an Independent Director. He was also appointed on the board of one of the TATA Group Company and other Public Sector Undertakings by BIFR, Ministry of Finance, Government of India.</p>
+         <p>He was also nominated as a member on the National Board of MSME, Ministry of Micro Small & Medium Enterprises.</p>
+         <p>He was invited by the Hon’ble Prime Minister of India Shri Narendra Modi ji at his official residence to discuss the current economic situation and way forward especially for MSMEs, in a small group.</p>
+         <p>He also operates a YouTube channel called “MSME HELPLINE”, wherein he has posted more than 800 videos on various schemes for MSMEs. The channel has a subscriber base of more than 1 Million and viewership of more than 50 millions.</p>
+         <p>He has authored a book "MSMEs of Developed India- An Encyclopaedia of MSME Schemes" covering all schemes related to MSMEs of all Central Government Ministries and other Stakeholders.  The book was launched by Hon’ble Minister of Commerce and Industry Sh Piyush Goyal Ji.</p>
+         <p>He also hosted a "Positive Talk with Mukesh Mohan Gupta" Show on ZEE BUSINESS and covered many  Central Cabinet Ministers, Dy Governors RBI and many CMDs / EDs of Banks.</p>
+        </div>
+       </div>
+       
+      </div>
+     </div>
+    </div>
+   </section><!-- Who Should Buy -->
+  <section class="py-14 bg-gradient-to-b from-cream to-white">
+    <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-10">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-charcoal mb-4">Who Should <span class="text-deep-green">Buy This Book?</span></h2>
+      <div class="w-24 h-1 bg-gold mx-auto"></div>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100">
+       <div class="w-16 h-16 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">🏭</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">MSME Entrepreneurs</h3>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100">
+       <div class="w-16 h-16 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">⚖️</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">Advocates &amp; Arbitrators</h3>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100">
+       <div class="w-16 h-16 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">📊</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">Chartered Accountants</h3>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100">
+       <div class="w-16 h-16 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">📋</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">Company Secretaries</h3>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100">
+       <div class="w-16 h-16 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">🏛️</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">Insolvency Professionals</h3>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100">
+       <div class="w-16 h-16 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">🏢</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">Policymakers</h3>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-lg text-center card-hover border border-gray-100 md:col-span-2 lg:col-span-2">
+       <div class="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">🎓</span>
+       </div>
+       <h3 class="font-semibold text-charcoal">Legal Researchers &amp; Academics</h3>
+      </div>
+     </div>
+    </div>
+   </section><!-- Book Details -->
+  <section class="py-10 bg-white border-y border-gray-200">
+    <div class="max-w-4xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 text-center">
+      <div>
+       <p class="text-gray-500 text-sm mb-1">Edition</p>
+       <p class="font-bold text-charcoal text-xl">2026</p>
+      </div>
+      <div>
+       <p class="text-gray-500 text-sm mb-1">Pages</p>
+       <p class="font-bold text-charcoal text-xl">536</p>
+      </div>
+      <div>
+       <p class="text-gray-500 text-sm mb-1">Language</p>
+       <p class="font-bold text-charcoal text-xl">English</p>
+      </div>
+      <div>
+       <p class="text-gray-500 text-sm mb-1">Publisher</p>
+       <p class="font-bold text-deep-green text-xl">Taxmann</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Trust Section -->
+  <section class="py-10 bg-cream">
+    <div class="max-w-4xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-4 md:gap-5">
+     <div class="text-center p-4 md:p-5">
+       <div class="w-12 h-12 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6 text-deep-green" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <p class="text-sm text-charcoal font-medium">India's Leading Professional Publisher</p>
+      </div>
+     <div class="text-center p-4 md:p-5">
+       <div class="w-12 h-12 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6 text-deep-green" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <p class="text-sm text-charcoal font-medium">50+ Landmark Judgments</p>
+      </div>
+     <div class="text-center p-4 md:p-5">
+       <div class="w-12 h-12 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6 text-deep-green" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <p class="text-sm text-charcoal font-medium">Practice-Ready Format</p>
+      </div>
+     <div class="text-center p-4 md:p-5">
+       <div class="w-12 h-12 bg-deep-green/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6 text-deep-green" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <p class="text-sm text-charcoal font-medium">Research Clarity</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA -->
+  <section class="pt-20 pb-10 bg-gradient-to-br from-charcoal via-gray-900 to-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0">
+     <div class="absolute top-0 left-1/4 w-96 h-96 bg-deep-green/20 rounded-full blur-3xl"></div>
+     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative">
+     <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Don't Let MSME Litigation Risks Go <span class="text-gold-light">Unmanaged</span></h2>
+     <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">Whether you are enforcing a claim, challenging an award, or advising a client — this book gives you structured judicial clarity.</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"><a href="https://rzp.io/rzp/H8XizLL" target="_blank" rel="noopener noreferrer" 
+      class="btn-primary px-10 py-5 text-white font-bold rounded-xl text-xl flex items-center gap-3 shadow-2xl inline-flex group active:scale-[0.98] transition-transform">
+      <span class="text-2xl" aria-hidden="true">🟢</span>
+      <span class="btn-cta-block">
+       <span class="flex items-center gap-2"><span class="btn-price-strike">₹995</span></span>
+       <span class="text-gold-light font-bold">Offer price – <span id="cta-price">₹895</span></span>
+      </span>
+     </a>
+     </div>
+     <p class="text-gray-400 text-sm flex items-center justify-center gap-2"><span>📦</span> Limited Stock Available • Fast Delivery</p>
+    <div class="mt-8 pt-5 border-t border-white/10">
+      <p class="text-gray-500 text-sm">Published by</p>
+      <p class="text-white font-semibold text-xl mt-1">Taxmann Publications</p>
+     </div>
+    </div>
+   </section><!-- Footer -->
+  <footer class="py-5 bg-charcoal border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+     <p class="text-gray-500 text-sm">© 2026 MSME Digest by Mukesh Mohan Gupta. All rights reserved.</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      headline: "India's Most Structured Judicial Guide on MSME Law",
+      subheadline: "50+ Landmark Supreme Court & High Court Judgments Explained in a Uniform 14-Part Analytical Format",
+      price_text: "₹895",
+      author_name: "Mukesh Mohan Gupta",
+      author_title: "President – Chamber of Indian Micro Small and Medium Enterprises",
+      background_color: "#FDFBF7",
+      surface_color: "#FFFFFF",
+      text_color: "#2D3436",
+      primary_color: "#0D5C46",
+      accent_color: "#C9A227"
+    };
+
+    async function onConfigChange(config) {
+      // Update headline
+      const headline = document.getElementById('hero-headline');
+      if (headline) {
+        const text = config.headline || defaultConfig.headline;
+        headline.innerHTML = text.replace('MSME Law', '<span class="text-deep-green">MSME Law</span>');
+      }
+
+      // Update subheadline
+      const subheadline = document.getElementById('hero-subheadline');
+      if (subheadline) {
+        subheadline.textContent = config.subheadline || defaultConfig.subheadline;
+      }
+
+      // Update prices
+      const heroPrice = document.getElementById('hero-price');
+      const ctaPrice = document.getElementById('cta-price');
+      const priceText = config.price_text || defaultConfig.price_text;
+      if (heroPrice) heroPrice.textContent = priceText;
+      if (ctaPrice) ctaPrice.textContent = priceText;
+
+      // Update author info
+      const bookAuthor = document.getElementById('book-author');
+      const authorSection = document.getElementById('author-name-section');
+      const authorTitle = document.getElementById('author-title-section');
+      const authorName = config.author_name || defaultConfig.author_name;
+      const authorTitleText = config.author_title || defaultConfig.author_title;
+      
+      if (bookAuthor) bookAuthor.textContent = authorName;
+      if (authorSection) authorSection.textContent = authorName;
+      if (authorTitle) authorTitle.textContent = authorTitleText;
+
+      // Apply colors
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+
+      document.documentElement.style.setProperty('--bg-color', bgColor);
+      document.documentElement.style.setProperty('--surface-color', surfaceColor);
+      document.documentElement.style.setProperty('--text-color', textColor);
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+      document.documentElement.style.setProperty('--accent-color', accentColor);
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["headline", config.headline || defaultConfig.headline],
+        ["subheadline", config.subheadline || defaultConfig.subheadline],
+        ["price_text", config.price_text || defaultConfig.price_text],
+        ["author_name", config.author_name || defaultConfig.author_name],
+        ["author_title", config.author_title || defaultConfig.author_title]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b)
+ {var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d579c8ba3468ad9',t:'MTc3MjM2MjMzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+ b.getElementsByTagName('head')[0].appendChild(d)}}
+ if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);
+ if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);
+ 'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+ </script>
+ </body>
+</html>
