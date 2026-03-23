@@ -4,7 +4,7 @@ A responsive static website for **MSME Digest** by Mukesh Mohan Gupta, designed 
 
 ## Live Demo
 
-[View Live Website](https://your-live-link-here.com)
+[View Live Website](https://msmedigest.indiansmechamber.com/)
 
 ## Repository
 
