@@ -1,6 +1,6 @@
 # MSME Digest Website
 
-A responsive static website for **MSME Digest** by Mukesh Mohan Gupta, designed to present structured guidance on the **MSMED Act, 2006**, key litigation areas, and useful reference resources.
+A responsive static website for **MSME Digest** by Mukesh Mohan Gupta, designed to present structured guidance on the **MSMED Act, 2006**, key litigation areas, and useful reference resources
 
 ## Live Demo
 
